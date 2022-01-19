@@ -18,7 +18,7 @@ public class FindWordle {
     public static void main(String[] args) {
         Set<String> results = new HashSet<>();
 
-        List<String> impossibleList = stringToList(Parameters.impossibleStr.toUpperCase());
+        List<String> impossibleList = stringToList(Parameters.impossible.toUpperCase());
         List<String> knownList = stringToList(Parameters.known.toUpperCase());
 
         Permutation.getPermutations(Permutation.getPattern(Parameters.known.toUpperCase(), Parameters.potential.toUpperCase()), Parameters.potentialBadPos, results);
@@ -57,7 +57,7 @@ public class FindWordle {
     }
 
 
-    private static Set<String> executeQuery(String[] queryLetters, List<String> impossible, String[] potentialBadPos, boolean useSolutions) {
+    private static Set<String> executeQuery(String[] queryLetters, List<String> impossibleList, String[] potentialBadPos, boolean useSolutions) {
         Set<String> results = new HashSet<>();
         StringBuilder checkSB = new StringBuilder();
 
@@ -72,7 +72,7 @@ public class FindWordle {
         querySB.append("with duration.inDays(date(\\\"2021-06-19\\\"), date()).days as offset ");
         for (int position = 0; position < 5; position++) {
             Set<String> ngLetters = stringArrayToListAtPosition(potentialBadPos, position);
-            ngLetters.addAll(impossible);
+            ngLetters.addAll(impossibleList);
             addNgToQuery(ngLetters, position, querySB);
         }
          querySB.append(String.format("match p=((l1:%s", tag));

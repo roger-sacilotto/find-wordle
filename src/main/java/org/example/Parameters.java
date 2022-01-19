@@ -1,8 +1,8 @@
 package org.example;
 
 public class Parameters {
-    public static final String known = "*O**t";
-    public static final String potential = "I";
-    public static final String impossibleStr = "yeasdubVM";
-    public static final String[] potentialBadPos = {"***I*"};
+    public static final String known = "****e";
+    public static final String potential = "bad";
+    public static final String impossible = "ystl";
+    public static final String[] potentialBadPos = {"b****", "**aa*", "***d*"};
 }
