@@ -1,5 +1,7 @@
 package org.example;
 
+import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +11,7 @@ public class WordlePerms {
         Set<String> results = new HashSet<>();
 
         List<String> knownList = FindWordle.stringToList(Parameters.known.toUpperCase());
-
+        System.out.println("prohibited letters: " + Parameters.impossible.toUpperCase() + "\n");
         Permutation.getPermutations(Permutation.getPattern(Parameters.known.toUpperCase(), Parameters.potential.toUpperCase()), Parameters.potentialBadPos, results);
         for (String candidatePermutation: results) {
             //System.out.println(s);
