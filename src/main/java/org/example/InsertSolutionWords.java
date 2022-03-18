@@ -21,7 +21,7 @@ public class InsertSolutionWords
     {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            ObjectNode rootNode = (ObjectNode) mapper.readTree(new File("./resources/wordle-words.json"));
+            ObjectNode rootNode = (ObjectNode) mapper.readTree(new File("./resources/wordle-words-nyt.json"));
             ArrayNode words = (ArrayNode) rootNode.findValue("words");
             System.out.println("num words: " + words.size());
             WordInjector.addLettersToGraph(Constants.SOLUTION_LETTER_TAG);

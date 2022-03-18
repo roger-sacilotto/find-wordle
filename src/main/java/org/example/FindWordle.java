@@ -13,7 +13,6 @@ public class FindWordle {
 
     private static boolean dumpQuery = false;
             ;
-    private static boolean ignoreDate = true;
 
     public static void main(String[] args) {
         Set<String> results = new HashSet<>();
@@ -27,7 +26,7 @@ public class FindWordle {
             //System.out.println(s);
             try {
                 String[] queryLetters = Permutation.getQueryLetters(knownList, candidatePermutation, Parameters.potentialBadPos);
-                Set<String> queryWords = executeQuery(queryLetters, impossibleList, Parameters.potentialBadPos, true);
+                Set<String> queryWords = executeQuery(queryLetters, impossibleList, Parameters.potentialBadPos, Parameters.querySolutionSet);
                 words.addAll(queryWords);
             } catch (Exception e) {
 
@@ -38,7 +37,7 @@ public class FindWordle {
         }
     }
 
-    static List<String> stringToList(String input) {
+    protected static List<String> stringToList(String input) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < input.length(); i++) {
             result.add(input.substring(i, i+1));
@@ -57,7 +56,7 @@ public class FindWordle {
     }
 
 
-    private static Set<String> executeQuery(String[] queryLetters, List<String> impossibleList, String[] potentialBadPos, boolean useSolutions) {
+    protected static Set<String> executeQuery(String[] queryLetters, List<String> impossibleList, String[] potentialBadPos, boolean useSolutions) {
         Set<String> results = new HashSet<>();
         StringBuilder checkSB = new StringBuilder();
 
@@ -96,7 +95,7 @@ public class FindWordle {
         querySB.append("AND NOT apoc.coll.contains(ng3, l3.value) ");
         querySB.append("AND NOT apoc.coll.contains(ng4, l4.value) ");
         querySB.append("AND NOT apoc.coll.contains(ng5, l5.value) ");
-        if (useSolutions && ! ignoreDate)
+        if (useSolutions && ! Parameters.ignoreDate)
             querySB.append("AND r2.word >= offset ");
         querySB.append("return apoc.text.join([l1.value, l2.value, l3.value, l4.value, l5.value], \\\"\\\"), r2.word");
         querySB.append("\"}]}");

@@ -1,8 +1,11 @@
 package org.example;
 
 public class Parameters {
-    public static final String known = "****e";
-    public static final String potential = "bad";
-    public static final String impossible = "ystl";
-    public static final String[] potentialBadPos = {"b****", "**aa*", "***d*"};
+    public static boolean querySolutionSet = true;
+    public static boolean permQuery = true;
+    public static boolean ignoreDate = true;
+    public static final String known = "r****";
+    public static final String potential = "oni";
+    public static final String impossible = "";
+    public static final String[] potentialBadPos = {"o****", "*n***", "**i**"};
 }
